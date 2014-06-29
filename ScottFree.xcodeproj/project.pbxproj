@@ -1,0 +1,474 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5DFA298119609BC5000954B0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DFA298019609BC5000954B0 /* Foundation.framework */; };
+		5DFA298319609BC5000954B0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DFA298219609BC5000954B0 /* CoreGraphics.framework */; };
+		5DFA298519609BC5000954B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DFA298419609BC5000954B0 /* UIKit.framework */; };
+		5DFA298B19609BC5000954B0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5DFA298919609BC5000954B0 /* InfoPlist.strings */; };
+		5DFA298D19609BC5000954B0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFA298C19609BC5000954B0 /* main.m */; };
+		5DFA299119609BC5000954B0 /* SFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFA299019609BC5000954B0 /* SFAppDelegate.m */; };
+		5DFA299419609BC5000954B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DFA299219609BC5000954B0 /* Main.storyboard */; };
+		5DFA299719609BC5000954B0 /* SFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFA299619609BC5000954B0 /* SFViewController.m */; };
+		5DFA299919609BC5000954B0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DFA299819609BC5000954B0 /* Images.xcassets */; };
+		5DFA29A019609BC5000954B0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DFA299F19609BC5000954B0 /* XCTest.framework */; };
+		5DFA29A119609BC5000954B0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DFA298019609BC5000954B0 /* Foundation.framework */; };
+		5DFA29A219609BC5000954B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DFA298419609BC5000954B0 /* UIKit.framework */; };
+		5DFA29AA19609BC5000954B0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5DFA29A819609BC5000954B0 /* InfoPlist.strings */; };
+		5DFA29AC19609BC5000954B0 /* ScottFreeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFA29AB19609BC5000954B0 /* ScottFreeTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5DFA29A319609BC5000954B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5DFA297519609BC5000954B0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5DFA297C19609BC5000954B0;
+			remoteInfo = ScottFree;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5DFA297D19609BC5000954B0 /* ScottFree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScottFree.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DFA298019609BC5000954B0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		5DFA298219609BC5000954B0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5DFA298419609BC5000954B0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		5DFA298819609BC5000954B0 /* ScottFree-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ScottFree-Info.plist"; sourceTree = "<group>"; };
+		5DFA298A19609BC5000954B0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5DFA298C19609BC5000954B0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5DFA298E19609BC5000954B0 /* ScottFree-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ScottFree-Prefix.pch"; sourceTree = "<group>"; };
+		5DFA298F19609BC5000954B0 /* SFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFAppDelegate.h; sourceTree = "<group>"; };
+		5DFA299019609BC5000954B0 /* SFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFAppDelegate.m; sourceTree = "<group>"; };
+		5DFA299319609BC5000954B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5DFA299519609BC5000954B0 /* SFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFViewController.h; sourceTree = "<group>"; };
+		5DFA299619609BC5000954B0 /* SFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFViewController.m; sourceTree = "<group>"; };
+		5DFA299819609BC5000954B0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5DFA299E19609BC5000954B0 /* ScottFreeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScottFreeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DFA299F19609BC5000954B0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		5DFA29A719609BC5000954B0 /* ScottFreeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ScottFreeTests-Info.plist"; sourceTree = "<group>"; };
+		5DFA29A919609BC5000954B0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5DFA29AB19609BC5000954B0 /* ScottFreeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScottFreeTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5DFA297A19609BC5000954B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DFA298319609BC5000954B0 /* CoreGraphics.framework in Frameworks */,
+				5DFA298519609BC5000954B0 /* UIKit.framework in Frameworks */,
+				5DFA298119609BC5000954B0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DFA299B19609BC5000954B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DFA29A019609BC5000954B0 /* XCTest.framework in Frameworks */,
+				5DFA29A219609BC5000954B0 /* UIKit.framework in Frameworks */,
+				5DFA29A119609BC5000954B0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5DFA297419609BC5000954B0 = {
+			isa = PBXGroup;
+			children = (
+				5DFA298619609BC5000954B0 /* ScottFree */,
+				5DFA29A519609BC5000954B0 /* ScottFreeTests */,
+				5DFA297F19609BC5000954B0 /* Frameworks */,
+				5DFA297E19609BC5000954B0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5DFA297E19609BC5000954B0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5DFA297D19609BC5000954B0 /* ScottFree.app */,
+				5DFA299E19609BC5000954B0 /* ScottFreeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5DFA297F19609BC5000954B0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5DFA298019609BC5000954B0 /* Foundation.framework */,
+				5DFA298219609BC5000954B0 /* CoreGraphics.framework */,
+				5DFA298419609BC5000954B0 /* UIKit.framework */,
+				5DFA299F19609BC5000954B0 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5DFA298619609BC5000954B0 /* ScottFree */ = {
+			isa = PBXGroup;
+			children = (
+				5DFA298F19609BC5000954B0 /* SFAppDelegate.h */,
+				5DFA299019609BC5000954B0 /* SFAppDelegate.m */,
+				5DFA299219609BC5000954B0 /* Main.storyboard */,
+				5DFA299519609BC5000954B0 /* SFViewController.h */,
+				5DFA299619609BC5000954B0 /* SFViewController.m */,
+				5DFA299819609BC5000954B0 /* Images.xcassets */,
+				5DFA298719609BC5000954B0 /* Supporting Files */,
+			);
+			path = ScottFree;
+			sourceTree = "<group>";
+		};
+		5DFA298719609BC5000954B0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5DFA298819609BC5000954B0 /* ScottFree-Info.plist */,
+				5DFA298919609BC5000954B0 /* InfoPlist.strings */,
+				5DFA298C19609BC5000954B0 /* main.m */,
+				5DFA298E19609BC5000954B0 /* ScottFree-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5DFA29A519609BC5000954B0 /* ScottFreeTests */ = {
+			isa = PBXGroup;
+			children = (
+				5DFA29AB19609BC5000954B0 /* ScottFreeTests.m */,
+				5DFA29A619609BC5000954B0 /* Supporting Files */,
+			);
+			path = ScottFreeTests;
+			sourceTree = "<group>";
+		};
+		5DFA29A619609BC5000954B0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5DFA29A719609BC5000954B0 /* ScottFreeTests-Info.plist */,
+				5DFA29A819609BC5000954B0 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5DFA297C19609BC5000954B0 /* ScottFree */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DFA29AF19609BC5000954B0 /* Build configuration list for PBXNativeTarget "ScottFree" */;
+			buildPhases = (
+				5DFA297919609BC5000954B0 /* Sources */,
+				5DFA297A19609BC5000954B0 /* Frameworks */,
+				5DFA297B19609BC5000954B0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ScottFree;
+			productName = ScottFree;
+			productReference = 5DFA297D19609BC5000954B0 /* ScottFree.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5DFA299D19609BC5000954B0 /* ScottFreeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DFA29B219609BC5000954B0 /* Build configuration list for PBXNativeTarget "ScottFreeTests" */;
+			buildPhases = (
+				5DFA299A19609BC5000954B0 /* Sources */,
+				5DFA299B19609BC5000954B0 /* Frameworks */,
+				5DFA299C19609BC5000954B0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5DFA29A419609BC5000954B0 /* PBXTargetDependency */,
+			);
+			name = ScottFreeTests;
+			productName = ScottFreeTests;
+			productReference = 5DFA299E19609BC5000954B0 /* ScottFreeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5DFA297519609BC5000954B0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = SF;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Company B";
+				TargetAttributes = {
+					5DFA299D19609BC5000954B0 = {
+						TestTargetID = 5DFA297C19609BC5000954B0;
+					};
+				};
+			};
+			buildConfigurationList = 5DFA297819609BC5000954B0 /* Build configuration list for PBXProject "ScottFree" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5DFA297419609BC5000954B0;
+			productRefGroup = 5DFA297E19609BC5000954B0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5DFA297C19609BC5000954B0 /* ScottFree */,
+				5DFA299D19609BC5000954B0 /* ScottFreeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5DFA297B19609BC5000954B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DFA299919609BC5000954B0 /* Images.xcassets in Resources */,
+				5DFA298B19609BC5000954B0 /* InfoPlist.strings in Resources */,
+				5DFA299419609BC5000954B0 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DFA299C19609BC5000954B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DFA29AA19609BC5000954B0 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5DFA297919609BC5000954B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DFA298D19609BC5000954B0 /* main.m in Sources */,
+				5DFA299719609BC5000954B0 /* SFViewController.m in Sources */,
+				5DFA299119609BC5000954B0 /* SFAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DFA299A19609BC5000954B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DFA29AC19609BC5000954B0 /* ScottFreeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5DFA29A419609BC5000954B0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5DFA297C19609BC5000954B0 /* ScottFree */;
+			targetProxy = 5DFA29A319609BC5000954B0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5DFA298919609BC5000954B0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5DFA298A19609BC5000954B0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		5DFA299219609BC5000954B0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5DFA299319609BC5000954B0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5DFA29A819609BC5000954B0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5DFA29A919609BC5000954B0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5DFA29AD19609BC5000954B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		5DFA29AE19609BC5000954B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5DFA29B019609BC5000954B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ScottFree/ScottFree-Prefix.pch";
+				INFOPLIST_FILE = "ScottFree/ScottFree-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		5DFA29B119609BC5000954B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ScottFree/ScottFree-Prefix.pch";
+				INFOPLIST_FILE = "ScottFree/ScottFree-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		5DFA29B319609BC5000954B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ScottFree.app/ScottFree";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ScottFree/ScottFree-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ScottFreeTests/ScottFreeTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		5DFA29B419609BC5000954B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ScottFree.app/ScottFree";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ScottFree/ScottFree-Prefix.pch";
+				INFOPLIST_FILE = "ScottFreeTests/ScottFreeTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5DFA297819609BC5000954B0 /* Build configuration list for PBXProject "ScottFree" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DFA29AD19609BC5000954B0 /* Debug */,
+				5DFA29AE19609BC5000954B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5DFA29AF19609BC5000954B0 /* Build configuration list for PBXNativeTarget "ScottFree" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DFA29B019609BC5000954B0 /* Debug */,
+				5DFA29B119609BC5000954B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5DFA29B219609BC5000954B0 /* Build configuration list for PBXNativeTarget "ScottFreeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DFA29B319609BC5000954B0 /* Debug */,
+				5DFA29B419609BC5000954B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5DFA297519609BC5000954B0 /* Project object */;
+}
