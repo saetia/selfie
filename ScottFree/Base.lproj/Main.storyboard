@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5023" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="14A261i" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment defaultVersion="1808" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
     <scenes>
-        <!--class Prefix:identifier View Controller-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="SFViewController" sceneMemberID="viewController">
@@ -13,15 +14,142 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view autoresizesSubviews="NO" appearanceType="aqua" clipsSubviews="YES" contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CkT-TA-FSu" customClass="AVCamPreviewView">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="768"/>
+                                <color key="backgroundColor" red="0.61484502819999998" green="0.68897169069999997" blue="0.74786750639999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="USF-bA-cO8" appends="YES" id="n0f-0c-i7J"/>
+                                </connections>
+                            </view>
+                            <button appearanceType="aqua" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L5A-Wj-PRn">
+                                <rect key="frame" x="768" y="625" width="256" height="143"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="countdown-cam.tiff">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l6c-X0-5AP"/>
+                                </connections>
+                            </button>
+                            <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yR-iU-W2B">
+                                <rect key="frame" x="795" y="40" width="200" height="171"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="110"/>
+                                <color key="textColor" red="0.92696823204419887" green="0.92696823204419887" blue="0.92696823204419887" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23R-rq-62B">
+                                <rect key="frame" x="795" y="219" width="200" height="171"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="110"/>
+                                <color key="textColor" red="0.92696823204419887" green="0.92696823204419887" blue="0.92696823204419887" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZL-uP-CEh">
+                                <rect key="frame" x="795" y="398" width="200" height="171"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="110"/>
+                                <color key="textColor" red="0.92696823204419887" green="0.92696823204419887" blue="0.92696823204419887" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HrM-pc-cfY">
+                                <rect key="frame" x="768" y="0.0" width="256" height="768"/>
+                                <subviews>
+                                    <scrollView appearanceType="aqua" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="thj-E7-7i8" customClass="RGMPagingScrollView">
+                                        <rect key="frame" x="0.0" y="0.0" width="256" height="768"/>
+                                        <color key="backgroundColor" red="0.61484502819999998" green="0.68897169069999997" blue="0.74786750639999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="datasource" destination="BYZ-38-t0r" id="Wvb-Dp-NfN"/>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="Bec-iP-Q2J"/>
+                                        </connections>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="one" destination="hZL-uP-CEh" id="zyd-k3-4TH"/>
+                        <outlet property="pagingScrollView" destination="thj-E7-7i8" id="qYC-1M-wEW"/>
+                        <outlet property="previewView" destination="CkT-TA-FSu" id="jnm-gQ-YB1"/>
+                        <outlet property="sidebar" destination="HrM-pc-cfY" id="pgM-Wf-0Ad"/>
+                        <outlet property="stillButton" destination="L5A-Wj-PRn" id="BPA-ro-ind"/>
+                        <outlet property="three" destination="7yR-iU-W2B" id="esW-12-Wvt"/>
+                        <outlet property="two" destination="23R-rq-62B" id="5xl-VS-wW1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="USF-bA-cO8">
+                    <connections>
+                        <action selector="focusAndExposeTap:" destination="BYZ-38-t0r" id="3gD-wf-9VQ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="-722" y="-248"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="l4v-dB-K7Y">
+            <objects>
+                <viewController id="OSq-AG-xFv" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="f6o-mT-p7h"/>
+                        <viewControllerLayoutGuide type="bottom" id="y9R-64-8wp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RNV-3u-TOd" customClass="RGMPageView">
+                        <rect key="frame" x="0.0" y="0.0" width="256" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button appearanceType="aqua" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dog-GQ-DkH">
+                                <rect key="frame" x="53" y="31" width="150" height="150"/>
+                                <color key="backgroundColor" red="0.87122323899999998" green="0.87122323899999998" blue="0.87122323899999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button appearanceType="aqua" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6P-wT-MPo">
+                                <rect key="frame" x="53" y="215" width="150" height="150"/>
+                                <color key="backgroundColor" red="0.87122323899999998" green="0.87122323899999998" blue="0.87122323899999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button appearanceType="aqua" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A3l-EV-LQM">
+                                <rect key="frame" x="53" y="399" width="150" height="150"/>
+                                <color key="backgroundColor" red="0.87122323899999998" green="0.87122323899999998" blue="0.87122323899999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button appearanceType="aqua" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Smq-dm-OZl">
+                                <rect key="frame" x="53" y="582" width="150" height="150"/>
+                                <color key="backgroundColor" red="0.87122323899999998" green="0.87122323899999998" blue="0.87122323899999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="four" destination="Smq-dm-OZl" id="I4C-ff-TWr"/>
+                            <outlet property="one" destination="Dog-GQ-DkH" id="Dkf-B3-Ihz"/>
+                            <outlet property="three" destination="A3l-EV-LQM" id="sju-zA-BlN"/>
+                            <outlet property="two" destination="M6P-wT-MPo" id="6Cg-T7-Z22"/>
+                        </connections>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="256" height="768"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GMr-3H-y5V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="54" y="-234"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="countdown-cam.tiff" width="61" height="61"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
