@@ -11,9 +11,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
-#import "RGMPagingScrollView.h"
-#import "RGMPageControl.h"
-#import "RGMPageView.h"
+#import "SFViewController.h"
 
 #import "UIImage+Resize.h"
 
@@ -21,21 +19,14 @@ static void * CapturingStillImageContext = &CapturingStillImageContext;
 static void * RecordingContext = &RecordingContext;
 static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDeviceAuthorizedContext;
 
-static NSString *reuseIdentifier = @"RGMPageReuseIdentifier";
-static NSInteger numberOfPages = 8;
 
-
-@interface SFViewController () <AVCaptureFileOutputRecordingDelegate, RGMPagingScrollViewDatasource, RGMPagingScrollViewDelegate>
+@interface SFViewController () <AVCaptureFileOutputRecordingDelegate, UIScrollViewDelegate>
 
 @property (strong, nonatomic) NSArray *filters;
+@property (strong, nonatomic) AVAudioPlayer *player;
 
-- (NSInteger)pagingScrollViewNumberOfPages:(RGMPagingScrollView *)pagingScrollView;
-- (UIView *)pagingScrollView:(RGMPagingScrollView *)pagingScrollView viewForIndex:(NSInteger)idx;
-
-#pragma mark - RGMPagingScrollViewDelegate
-
-- (void)pagingScrollView:(RGMPagingScrollView *)pagingScrollView scrolledToPage:(NSInteger)idx;
-
+@property int countdown;
+@property NSTimer *timer;
 
 // Session management.
 @property (nonatomic) dispatch_queue_t sessionQueue; // Communicate with the session and other session objects on this queue.
@@ -71,12 +62,51 @@ static NSInteger numberOfPages = 8;
 {
     [super viewDidLoad];
 
+    _countdown = 3;
     
-    
-    
-    
-    _filters = @[@"Anime", @"Brannan", @"Blue-Brown", @"Blue-Orange",  @"Cobalt-Crimson", @"Crimson-Clover", @"Decrease", @"Earlybird", @"Gold-Blue", @"Gold-Crimson", @"Gotham", @"Hefe",@"Increase",@"Inkwell",@"Lomo-fi",@"Lord-Kelvin",@"Nashville",@"Red-Blue-Yellow",@"Smokey",@"Sutro",@"Teal-Magenta-Gold",@"Toaster",@"Walden",@"X-Pro-II",@"Grimes",@"Lucille",@"Romero",@"None"];
+    //_filters = @[@"Anime", @"Brannan", @"Blue-Brown", @"Blue-Orange",  @"Cobalt-Crimson", @"Crimson-Clover", @"Decrease", @"Earlybird", @"Gold-Blue", @"Gold-Crimson", @"Gotham", @"Hefe",@"Increase",@"Inkwell",@"Lomo-fi",@"Lord-Kelvin",@"Nashville",@"Red-Blue-Yellow",@"Smokey",@"Sutro",@"Teal-Magenta-Gold",@"Toaster",@"Walden",@"X-Pro-II",@"Grimes",@"Lucille",@"Romero",@"None"];
         
+
+    _filters = @[@"None", @"Brannan", @"Decrease", @"Earlybird", @"Hefe",@"Increase",@"Inkwell",@"Gotham",@"Lomo-fi",@"Nashville",@"X-Pro-II"];
+    
+
+   
+    for (int i = 0; i < [_filters count]; i++){
+        
+        UIImage *photo = [UIImage imageNamed:@"girl.jpg"];
+        
+        photo = [photo resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(256,256) interpolationQuality:kCGInterpolationNone];
+        
+        CIFilter *lutFilter = [CIFilter filterWithLUT:_filters[i] dimension:64];
+        CIImage *ciImage = [[CIImage alloc] initWithImage:photo];
+        [lutFilter setValue:ciImage forKey:@"inputImage"];
+        CIImage *outputImage = [lutFilter outputImage];
+        CIContext *context = [CIContext contextWithOptions:[NSDictionary dictionaryWithObject:(__bridge id)(CGColorSpaceCreateDeviceRGB()) forKey:kCIContextWorkingColorSpace]];
+        
+        UIImage *img = [UIImage imageWithCGImage:[context createCGImage:outputImage fromRect:outputImage.extent]];
+        
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setContentMode:UIViewContentModeScaleAspectFill];
+        [btn setFrame: CGRectMake(0, i * 256, 256, 256)];
+        [btn setBackgroundColor: [UIColor lightGrayColor]];
+        [[btn imageView] setContentMode:UIViewContentModeScaleAspectFill];
+        [btn setImage:img forState:UIControlStateNormal];
+        
+        [self.filterView addSubview:btn];
+        
+    }
+    
+    [self.filterView setContentSize:CGSizeMake(256,[_filters count] * 256)];
+    
+
+
+    
+
+    
+    
+    
+    
+    
     
     
     
@@ -163,35 +193,6 @@ static NSInteger numberOfPages = 8;
         }
     });
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    [self.pagingScrollView registerClass:[RGMPageView class] forCellReuseIdentifier:reuseIdentifier];
-    
-    UIImage *image = [UIImage imageNamed:@"indicator.png"];
-    UIImage *imageActive = [UIImage imageNamed:@"indicator-active.png"];
-    
-    RGMPageControl *indicator = [[RGMPageControl alloc] initWithItemImage:image activeImage:imageActive];
-    indicator.numberOfPages = numberOfPages;
-    [indicator addTarget:self action:@selector(pageIndicatorValueChanged:) forControlEvents:UIControlEventValueChanged];
-    
-
-    [self.sidebar addSubview:indicator];
-    self.pageIndicator = indicator;
-    
-    
-    
-    // comment out for horizontal scrolling and indicator orientation (defaults)
-    self.pagingScrollView.scrollDirection = RGMScrollDirectionVertical;
-    self.pageIndicator.orientation = RGMPageIndicatorVertical;
     
     
     
@@ -456,14 +457,64 @@ static NSInteger numberOfPages = 8;
 
 
 
+-(void)revealFilters {
+ 
+
+}
+-(void)hideFilters {
+    
+    
+}
 
 
 
+-(void)onTick:(NSTimer *)timer {
+    if (!_countdown){
+        _countdown = 3;
+        [self triggerShutter: nil];
+        [_timer invalidate];
+        _timer = nil;
+        NSLog(@"boom!");
+        [self revealFilters];
+        [_stillButton setImage:[UIImage imageNamed:@"go.png"] forState:UIControlStateNormal];
+    } else {
+        [_stillButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d.png",_countdown--]] forState:UIControlStateNormal];
+        [self beep];
+        NSLog(@"tick");
+    }
+}
+
+
+- (IBAction)startCountdown:(UIButton *)sender {
+    
+    NSMethodSignature *sgn = [self methodSignatureForSelector:@selector(onTick:)];
+    NSInvocation *inv = [NSInvocation invocationWithMethodSignature: sgn];
+    [inv setTarget: self];
+    [inv setSelector:@selector(onTick:)];
+    
+    _timer = [NSTimer timerWithTimeInterval: 1.0
+                                     invocation:inv
+                                        repeats:YES];
+
+    
+    NSRunLoop *runner = [NSRunLoop currentRunLoop];
+    [runner addTimer: _timer forMode: NSDefaultRunLoopMode];
+    
+    
+}
 
 
 
+-(void)beep {
+    NSString *path =[[NSBundle mainBundle] pathForResource:@"IKBeep" ofType:@"aiff"];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    _player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:NULL];
+    [_player setVolume:1.0];
+    [_player play];
+}
 
-- (IBAction)takePhoto:(UIButton *)sender {
+
+- (IBAction)triggerShutter:(UIButton *)sender {
     
     
     dispatch_async([self sessionQueue], ^{
@@ -480,7 +531,12 @@ static NSInteger numberOfPages = 8;
             {
                 NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
                 UIImage *image = [[UIImage alloc] initWithData:imageData];
-                [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:nil];
+                [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:^(NSURL *assetURL, NSError *error){
+                
+                    [_yourPhoto setAlpha:1];
+                    [_yourPhoto setImage:image];
+                
+            }];
             }
         }];
     });
@@ -488,134 +544,42 @@ static NSInteger numberOfPages = 8;
 }
 
 
-- (IBAction)pageIndicatorValueChanged:(RGMPageControl *)sender
-{
-    [self.pagingScrollView setCurrentPage:sender.currentPage animated:YES];
+
+- (IBAction)takePhoto:(UIButton *)sender {
+    
+    [self startCountdown: sender];
+    
 }
 
 
-- (void)viewDidUnload
-{
-    self.pagingScrollView = nil;
-    self.pageIndicator = nil;
+
+
+
+- (void)viewDidUnload {
     [super viewDidUnload];
 }
 
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    
-    CGRect bounds = self.view.bounds;
-    
-    [self.pageIndicator sizeToFit];
-    
-    CGRect frame = self.pageIndicator.frame;
-    const CGFloat inset = 20.0f;
-    
-    switch (self.pageIndicator.orientation) {
-        case RGMPageIndicatorHorizontal: {
-            frame.origin.x = floorf((bounds.size.width - frame.size.width) / 2.0f);
-            frame.origin.y = bounds.size.height - frame.size.height - inset;
-            frame.size.width = MIN(frame.size.width, bounds.size.width);
-            break;
-        }
-        case RGMPageIndicatorVertical: {
-            frame.origin.x = bounds.origin.x + inset;
-            frame.origin.y = floorf((bounds.size.height - frame.size.height) / 2.0f);
-            frame.size.height = MIN(frame.size.height, bounds.size.height);
-            break;
-        }
-    }
-    
-    self.pageIndicator.frame = frame;
-}
 
 #pragma mark - RGMPagingScrollViewDatasource
 
-- (NSInteger)pagingScrollViewNumberOfPages:(RGMPagingScrollView *)pagingScrollView
+- (NSInteger)pagingScrollViewNumberOfPages:(UIScrollView *)pagingScrollView
 {
-    return numberOfPages;
+    return [_filters count] / 3;
 }
 
-- (UIView *)pagingScrollView:(RGMPagingScrollView *)pagingScrollView viewForIndex:(NSInteger)idx
-{
-    RGMPageView *view = (RGMPageView *)[pagingScrollView dequeueReusablePageWithIdentifer:reuseIdentifier forIndex:idx];
-    
-    
-    //_arrTittleFilter = @[@"Anime", @"Brannan", @"Blue-Brown", @"Blue-Orange",  @"Cobalt-Crimson", @"Crimson-Clover", @"Decrease", @"Earlybird", @"Gold-Blue", @"Gold-Crimson", @"Gotham", @"Hefe",@"Increase",@"Inkwell",@"Lomo-fi",@"Lord-Kelvin",@"Nashville",@"Red-Blue-Yellow",@"Smokey",@"Sutro",@"Teal-Magenta-Gold",@"Toaster",@"Walden",@"X-Pro-II",@"Grimes",@"Lucille",@"Romero",@"None"];
-    
-    
-        UIImage *photo = [UIImage imageNamed:@"girl.jpg"];
-    
-        photo = [photo resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(150,150) interpolationQuality:kCGInterpolationNone];
-    
-    
-        CIFilter *lutFilter = [CIFilter filterWithLUT:_filters[idx * 4] dimension:64];
-        CIImage *ciImage = [[CIImage alloc] initWithImage:photo];
-        [lutFilter setValue:ciImage forKey:@"inputImage"];
-        CIImage *outputImage = [lutFilter outputImage];
-        CIContext *context = [CIContext contextWithOptions:[NSDictionary dictionaryWithObject:(__bridge id)(CGColorSpaceCreateDeviceRGB()) forKey:kCIContextWorkingColorSpace]];
-        
-        UIImage *one = [UIImage imageWithCGImage:[context createCGImage:outputImage fromRect:outputImage.extent]];
-    
 
-    
-    
-    NSLog(@"%@, %@, %@, %@",_filters[idx * 4], _filters[idx * 4 + 1], _filters[idx * 4 + 2], _filters[idx * 4 + 3]);
-    
-    
-    lutFilter = [CIFilter filterWithLUT:_filters[idx * 4 + 1] dimension:64];
-    ciImage = [[CIImage alloc] initWithImage:photo];
-    [lutFilter setValue:ciImage forKey:@"inputImage"];
-    outputImage = [lutFilter outputImage];
-    context = [CIContext contextWithOptions:[NSDictionary dictionaryWithObject:(__bridge id)(CGColorSpaceCreateDeviceRGB()) forKey:kCIContextWorkingColorSpace]];
-    
-    UIImage *two = [UIImage imageWithCGImage:[context createCGImage:outputImage fromRect:outputImage.extent]];
-
-    
-    
-    lutFilter = [CIFilter filterWithLUT:_filters[idx * 4 + 2] dimension:64];
-    ciImage = [[CIImage alloc] initWithImage:photo];
-    [lutFilter setValue:ciImage forKey:@"inputImage"];
-    outputImage = [lutFilter outputImage];
-    context = [CIContext contextWithOptions:[NSDictionary dictionaryWithObject:(__bridge id)(CGColorSpaceCreateDeviceRGB()) forKey:kCIContextWorkingColorSpace]];
-    
-    UIImage *three = [UIImage imageWithCGImage:[context createCGImage:outputImage fromRect:outputImage.extent]];
-
-    
-    
-    lutFilter = [CIFilter filterWithLUT:_filters[idx * 4 + 3] dimension:64];
-    ciImage = [[CIImage alloc] initWithImage:photo];
-    [lutFilter setValue:ciImage forKey:@"inputImage"];
-    outputImage = [lutFilter outputImage];
-    context = [CIContext contextWithOptions:[NSDictionary dictionaryWithObject:(__bridge id)(CGColorSpaceCreateDeviceRGB()) forKey:kCIContextWorkingColorSpace]];
-    
-    UIImage *four = [UIImage imageWithCGImage:[context createCGImage:outputImage fromRect:outputImage.extent]];
-    
-    
-        [view.one setBackgroundImage:one forState:UIControlStateNormal];
-    
-
-        [view.two setBackgroundImage:two forState:UIControlStateNormal];
-
-   
-        [view.three setBackgroundImage:three forState:UIControlStateNormal];
-   
-
-        [view.four setBackgroundImage:four forState:UIControlStateNormal];
-  
-    
-    //view.label.text = [NSString stringWithFormat:@"%d", idx];
-    
-    return view;
-}
 
 #pragma mark - RGMPagingScrollViewDelegate
 
-- (void)pagingScrollView:(RGMPagingScrollView *)pagingScrollView scrolledToPage:(NSInteger)idx
+- (void)pagingScrollView:(UIScrollView *)pagingScrollView scrolledToPage:(NSInteger)id
 {
-    self.pageIndicator.currentPage = idx;
+    
 }
 
 
+- (IBAction)getStarted:(UIButton *)sender {
+    
+    [_intro setAlpha:0];
+    
+}
 @end

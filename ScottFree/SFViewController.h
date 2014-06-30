@@ -8,23 +8,25 @@
 
 #import <UIKit/UIKit.h>
 #import "AVCamPreviewView.h"
-
-@class RGMPagingScrollView;
-@class RGMPageControl;
+#import "SFFilterView.h"
 
 @interface SFViewController : UIViewController
 
 @property (nonatomic, weak) IBOutlet AVCamPreviewView *previewView;
-@property (weak, nonatomic) IBOutlet UILabel *three;
-@property (weak, nonatomic) IBOutlet UILabel *two;
-@property (weak, nonatomic) IBOutlet UILabel *one;
 @property (weak, nonatomic) IBOutlet UIButton *stillButton;
 - (IBAction)takePhoto:(UIButton *)sender;
 
-@property (nonatomic, strong) IBOutlet RGMPagingScrollView *pagingScrollView;
-@property (nonatomic, strong) IBOutlet RGMPageControl *pageIndicator;
+@property (weak, nonatomic) IBOutlet SFFilterView *filterView;
+
+@property (strong, nonatomic) IBOutlet UIButton *retakeButton;
+@property (strong, nonatomic) IBOutlet UIButton *post;
+@property (strong, nonatomic) IBOutlet UIButton *postAndSend;
 
 @property (strong, nonatomic) IBOutlet UIView *sidebar;
+@property (weak, nonatomic) IBOutlet UIImageView *yourPhoto;
 
+@property (weak, nonatomic) IBOutlet UIView *intro;
+@property (weak, nonatomic) IBOutlet UIButton *homeGoButton;
+- (IBAction)getStarted:(UIButton *)sender;
 
 @end

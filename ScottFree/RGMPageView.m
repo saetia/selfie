@@ -26,30 +26,22 @@
         
         _one = [UIButton buttonWithType:UIButtonTypeCustom];
         [_one setContentMode:UIViewContentModeScaleAspectFill];
-        [_one setFrame: CGRectMake(53, 31, 150, 150)];
+        [_one setFrame: CGRectMake(0, 0, 256, 256)];
         [_one setBackgroundColor: [UIColor lightGrayColor]];
         [self addSubview:_one];
         
         _two = [UIButton buttonWithType:UIButtonTypeCustom];
         [_two setContentMode:UIViewContentModeScaleAspectFill];
-        [_two setFrame: CGRectMake(53, 150 * 1 + (31 * 2), 150, 150)];
+        [_two setFrame: CGRectMake(0, 256, 256, 256)];
         [_two setBackgroundColor: [UIColor lightGrayColor]];
         [self addSubview:_two];
         
         _three = [UIButton buttonWithType:UIButtonTypeCustom];
         [_three setContentMode:UIViewContentModeScaleAspectFill];
-        [_three setFrame: CGRectMake(53, 150 * 2 + (31 * 3), 150, 150)];
+        [_three setFrame: CGRectMake(0, 256 * 2, 256, 256)];
         [_three setBackgroundColor: [UIColor lightGrayColor]];
         [self addSubview:_three];
         
-        _four = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_four setContentMode:UIViewContentModeScaleAspectFill];
-        [_four setFrame: CGRectMake(53, 150 * 3 + (31 * 4), 150, 150)];
-        [_four setBackgroundColor: [UIColor lightGrayColor]];
-        [self addSubview:_four];
-        
-        
-
         
     }
     

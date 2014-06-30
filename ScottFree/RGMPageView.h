@@ -14,6 +14,5 @@
 @property (nonatomic, strong) IBOutlet UIButton *one;
 @property (nonatomic, strong) IBOutlet UIButton *two;
 @property (nonatomic, strong) IBOutlet UIButton *three;
-@property (nonatomic, strong) IBOutlet UIButton *four;
 
 @end

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E5A7C5DB-D93E-4DAE-8AB0-948B296D44E4</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ScottFree</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>627DF4EC-8DF1-4EA6-9D68-0A54BDB0E470</key>
+		<string>ssh://github.com/saetia/selfie.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ScottFree.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>627DF4EC-8DF1-4EA6-9D68-0A54BDB0E470</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/saetia/selfie.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>627DF4EC-8DF1-4EA6-9D68-0A54BDB0E470</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>627DF4EC-8DF1-4EA6-9D68-0A54BDB0E470</string>
+			<key>IDESourceControlWCCName</key>
+			<string>selfie</string>
+		</dict>
+	</array>
+</dict>
+</plist>
