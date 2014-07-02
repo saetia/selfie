@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5DFA297C19609BC5000954B0"
-               BuildableName = "ScottFree.app"
-               BlueprintName = "ScottFree"
+               BuildableName = "Selfie.app"
+               BlueprintName = "Selfie"
                ReferencedContainer = "container:ScottFree.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,8 +43,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5DFA297C19609BC5000954B0"
-            BuildableName = "ScottFree.app"
-            BlueprintName = "ScottFree"
+            BuildableName = "Selfie.app"
+            BlueprintName = "Selfie"
             ReferencedContainer = "container:ScottFree.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5DFA297C19609BC5000954B0"
-            BuildableName = "ScottFree.app"
-            BlueprintName = "ScottFree"
+            BuildableName = "Selfie.app"
+            BlueprintName = "Selfie"
             ReferencedContainer = "container:ScottFree.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -80,8 +80,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5DFA297C19609BC5000954B0"
-            BuildableName = "ScottFree.app"
-            BlueprintName = "ScottFree"
+            BuildableName = "Selfie.app"
+            BlueprintName = "Selfie"
             ReferencedContainer = "container:ScottFree.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="14A261i" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment defaultVersion="1808" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -15,7 +15,7 @@
                         <subviews>
                             <view autoresizesSubviews="NO" appearanceType="aqua" clipsSubviews="YES" contentMode="scaleAspectFill" id="CkT-TA-FSu" customClass="AVCamPreviewView">
                                 <rect key="frame" x="0.0" y="256" width="768" height="768"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.87122323899999998" green="0.87122323899999998" blue="0.87122323899999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="USF-bA-cO8" appends="YES" id="n0f-0c-i7J"/>
                                 </connections>
@@ -25,7 +25,7 @@
                                 <subviews>
                                     <view autoresizesSubviews="NO" appearanceType="aqua" clipsSubviews="YES" contentMode="scaleAspectFill" id="b80-Q5-yWd" userLabel="Taken Photo" customClass="UIImageView">
                                         <rect key="frame" x="193" y="0.0" width="575" height="575"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.87450980392156863" green="0.87450980392156863" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <scrollView appearanceType="aqua" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="thj-E7-7i8" customClass="SFFilterView">
                                         <rect key="frame" x="0.0" y="0.0" width="193" height="575"/>
@@ -94,6 +94,8 @@
                                         <state key="normal" image="go.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="selected" image="go-inverse.png"/>
+                                        <state key="highlighted" image="go-inverse.png"/>
                                         <connections>
                                             <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l6c-X0-5AP"/>
                                         </connections>
@@ -120,6 +122,8 @@
                                         <state key="normal" image="go.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="selected" image="go-inverse.png"/>
+                                        <state key="highlighted" image="go-inverse.png"/>
                                         <connections>
                                             <action selector="getStarted:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EPE-jS-6dh"/>
                                         </connections>
@@ -162,11 +166,11 @@
             <objects>
                 <viewController storyboardIdentifier="SFModalViewController" id="0Fn-Dk-5TO" customClass="SFModalViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gI8-Ku-e17">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="500"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="8Ns-eZ-k9u">
-                                <rect key="frame" x="0.0" y="389" width="768" height="635"/>
+                                <rect key="frame" x="0.0" y="389" width="768" height="636"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Hi. What’s your Email?" minimumFontSize="10" clearButtonMode="whileEditing" id="Bga-iD-536">
@@ -182,6 +186,8 @@
                                         <state key="normal" image="go.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="selected" image="go-inverse.png"/>
+                                        <state key="highlighted" image="go-inverse.png"/>
                                         <connections>
                                             <action selector="sendEmail:" destination="0Fn-Dk-5TO" eventType="touchUpInside" id="rcQ-QZ-K8c"/>
                                         </connections>
@@ -209,6 +215,7 @@
     </scenes>
     <resources>
         <image name="filter.png" width="290" height="68"/>
+        <image name="go-inverse.png" width="121" height="121"/>
         <image name="go.png" width="121" height="121"/>
         <image name="post-send-copy.png" width="159" height="47"/>
         <image name="post.png" width="63" height="19"/>
@@ -217,10 +224,10 @@
         <image name="selfie-station.png" width="442" height="345"/>
         <image name="snap-a-pic.png" width="503" height="69"/>
     </resources>
-    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
 </document>

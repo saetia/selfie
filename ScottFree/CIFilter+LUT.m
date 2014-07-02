@@ -85,8 +85,8 @@
     size_t width = CGImageGetWidth(image);
     size_t height = CGImageGetHeight(image);
     
-    bytesPerRow   = (width * 4);
-    bitmapSize     = (bytesPerRow * height);
+    bytesPerRow  = (width * 4);
+    bitmapSize   = (bytesPerRow * height);
     
     bitmap = malloc( bitmapSize );
     if (bitmap == NULL){

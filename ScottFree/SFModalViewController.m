@@ -64,29 +64,10 @@
     
     NSString *email = _email.text;
 
-
-    NSString *imagePath = [NSString stringWithFormat:@"%@/image.igo",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]];
-
-    NSData *data = [NSData dataWithContentsOfFile:imagePath];
-    
-    NSMutableString *urlString = [[NSMutableString alloc] initWithFormat:@"file=thefile&&filename=selfie"];
-    
-    [urlString appendFormat:@"%@", data];
-    
-    NSData *postData = [urlString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
-    NSString *baseurl = [NSString stringWithFormat:@"http://companyb.companybonline.com/selfie/mail.php?email=%@",email];
-    
-    NSURL *url = [NSURL URLWithString:baseurl];
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
-    [urlRequest setHTTPMethod: @"POST"];
-    [urlRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
-    [urlRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [urlRequest setHTTPBody:postData];
-    
-    NSURLConnection *connection = [NSURLConnection connectionWithRequest:urlRequest delegate:self];
-    [connection start];
-    
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc postNotificationName:@"emailPhoto" object:self userInfo: @{
+                                                                       @"email": email
+                                                                       }];
     
     [_email resignFirstResponder];
     
