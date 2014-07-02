@@ -19,14 +19,21 @@
 @property (weak, nonatomic) IBOutlet SFFilterView *filterView;
 
 @property (strong, nonatomic) IBOutlet UIButton *retakeButton;
-@property (strong, nonatomic) IBOutlet UIButton *post;
-@property (strong, nonatomic) IBOutlet UIButton *postAndSend;
+@property (strong, nonatomic) IBOutlet UIButton *postButton;
+@property (strong, nonatomic) IBOutlet UIButton *postAndSendButton;
 
 @property (strong, nonatomic) IBOutlet UIView *sidebar;
 @property (weak, nonatomic) IBOutlet UIImageView *yourPhoto;
+@property (weak, nonatomic) IBOutlet UIView *snapSidebar;
+@property (weak, nonatomic) IBOutlet UIView *buttonsView;
 
 @property (weak, nonatomic) IBOutlet UIView *intro;
 @property (weak, nonatomic) IBOutlet UIButton *homeGoButton;
+
 - (IBAction)getStarted:(UIButton *)sender;
+- (IBAction)retakePhoto:(UIButton *)sender;
+- (IBAction)postAndSendPhoto:(UIButton *)sender;
+- (IBAction)PostPhoto:(UIButton *)sender;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 
 @end

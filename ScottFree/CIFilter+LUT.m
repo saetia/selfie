@@ -89,8 +89,7 @@
     bitmapSize     = (bytesPerRow * height);
     
     bitmap = malloc( bitmapSize );
-    if (bitmap == NULL)
-    {
+    if (bitmap == NULL){
         return NULL;
     }
     
@@ -111,15 +110,16 @@
     
     CGColorSpaceRelease( colorSpace );
     
-    if (context == NULL)
-    {
+    if (context == NULL){
         free (bitmap);
-    }
-    
+        return NULL;
+    } else
+
     CGContextDrawImage(context, CGRectMake(0, 0, width, height), image);
     
     CGContextRelease(context);
     
     return bitmap;
+
 }
 @end

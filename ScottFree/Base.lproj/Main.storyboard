@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -9,44 +9,88 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="SFViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view autoresizesSubviews="NO" appearanceType="aqua" clipsSubviews="YES" contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CkT-TA-FSu" customClass="AVCamPreviewView">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="768"/>
+                            <view autoresizesSubviews="NO" appearanceType="aqua" clipsSubviews="YES" contentMode="scaleAspectFill" id="CkT-TA-FSu" customClass="AVCamPreviewView">
+                                <rect key="frame" x="0.0" y="256" width="768" height="768"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="USF-bA-cO8" appends="YES" id="n0f-0c-i7J"/>
                                 </connections>
                             </view>
-                            <view autoresizesSubviews="NO" appearanceType="aqua" clipsSubviews="YES" alpha="0.0" contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b80-Q5-yWd" customClass="UIImageView">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="768"/>
-                                <color key="backgroundColor" red="1" green="0.1948640062" blue="0.36857171799999999" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HrM-pc-cfY">
-                                <rect key="frame" x="768" y="0.0" width="256" height="768"/>
+                            <view alpha="0.0" contentMode="scaleToFill" id="HrM-pc-cfY" userLabel="Filter">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <subviews>
-                                    <scrollView appearanceType="aqua" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="thj-E7-7i8" customClass="SFFilterView">
-                                        <rect key="frame" x="0.0" y="0.0" width="256" height="768"/>
+                                    <view autoresizesSubviews="NO" appearanceType="aqua" clipsSubviews="YES" contentMode="scaleAspectFill" id="b80-Q5-yWd" userLabel="Taken Photo" customClass="UIImageView">
+                                        <rect key="frame" x="193" y="0.0" width="575" height="575"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <scrollView appearanceType="aqua" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="thj-E7-7i8" customClass="SFFilterView">
+                                        <rect key="frame" x="0.0" y="0.0" width="193" height="575"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="Bec-iP-Q2J"/>
                                         </connections>
                                     </scrollView>
+                                    <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="filter.png" id="CBP-oW-GcX" userLabel="Filter">
+                                        <rect key="frame" x="0.0" y="575" width="768" height="212"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" id="ZQw-hn-aFe" userLabel="Buttons">
+                                        <rect key="frame" x="0.0" y="787" width="768" height="237"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="H6j-Dd-RHy" userLabel="Post">
+                                                <rect key="frame" x="0.0" y="0.0" width="252" height="237"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" image="post.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="PostPhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d64-Oo-YPR"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="epv-gX-otn" userLabel="Post Send">
+                                                <rect key="frame" x="258" y="0.0" width="252" height="237"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" image="post-send-copy.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="postAndSendPhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mV1-vY-F7Z"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="jN1-gq-yiF" userLabel="Retake">
+                                                <rect key="frame" x="516" y="0.0" width="252" height="237"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" image="retake.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="retakePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yUi-gD-aDS"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hcz-SA-QU9">
-                                <rect key="frame" x="768" y="0.0" width="256" height="768"/>
+                            <view contentMode="scaleToFill" id="hcz-SA-QU9" userLabel="Snap Sidebar">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="256"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button appearanceType="aqua" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L5A-Wj-PRn">
-                                        <rect key="frame" x="0.0" y="605" width="256" height="143"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="snap-a-pic.png" id="0s7-Ig-B3W">
+                                        <rect key="frame" x="41" y="0.0" width="537" height="256"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <button appearanceType="aqua" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="L5A-Wj-PRn">
+                                        <rect key="frame" x="593" y="0.0" width="155" height="256"/>
                                         <state key="normal" image="go.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -54,23 +98,24 @@
                                             <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l6c-X0-5AP"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="snap-a-pic.png" translatesAutoresizingMaskIntoConstraints="NO" id="0s7-Ig-B3W">
-                                        <rect key="frame" x="94" y="56" width="69" height="503"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <view appearanceType="aqua" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iy0-mO-qrQ">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                            <view appearanceType="aqua" contentMode="scaleToFill" id="Iy0-mO-qrQ" userLabel="Home">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="selfie-station.png" translatesAutoresizingMaskIntoConstraints="NO" id="DTH-FA-xSH">
-                                        <rect key="frame" x="169" y="195" width="442" height="345"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="selfie-station.png" id="DTH-FA-xSH">
+                                        <rect key="frame" x="163" y="119" width="442" height="345"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7l-SN-iQW">
-                                        <rect key="frame" x="292" y="472" width="176" height="121"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scottfree-salon.png" id="CZC-OB-IGd">
+                                        <rect key="frame" x="0.0" y="724" width="768" height="300"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="Q7l-SN-iQW">
+                                        <rect key="frame" x="292" y="402" width="176" height="121"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="go.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -79,26 +124,26 @@
                                             <action selector="getStarted:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EPE-jS-6dh"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="home-sidebar.png" translatesAutoresizingMaskIntoConstraints="NO" id="CZC-OB-IGd">
-                                        <rect key="frame" x="768" y="0.0" width="256" height="768"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="EYG-FQ-c8u"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
+                        <outlet property="buttonsView" destination="ZQw-hn-aFe" id="1uc-4Y-0Y9"/>
                         <outlet property="filterView" destination="thj-E7-7i8" id="GMJ-FW-K8N"/>
                         <outlet property="homeGoButton" destination="Q7l-SN-iQW" id="nI5-4N-Dvx"/>
                         <outlet property="intro" destination="Iy0-mO-qrQ" id="nk9-vv-fek"/>
+                        <outlet property="mainView" destination="8bC-Xf-vdC" id="otq-Zh-aU0"/>
+                        <outlet property="postAndSendButton" destination="epv-gX-otn" id="fdz-Rb-Dzo"/>
+                        <outlet property="postButton" destination="H6j-Dd-RHy" id="Cz1-eT-Au7"/>
                         <outlet property="previewView" destination="CkT-TA-FSu" id="jnm-gQ-YB1"/>
+                        <outlet property="retakeButton" destination="jN1-gq-yiF" id="fnh-Oj-yZi"/>
                         <outlet property="sidebar" destination="HrM-pc-cfY" id="pgM-Wf-0Ad"/>
+                        <outlet property="snapSidebar" destination="hcz-SA-QU9" id="2uv-S8-r8R"/>
                         <outlet property="stillButton" destination="L5A-Wj-PRn" id="BPA-ro-ind"/>
                         <outlet property="yourPhoto" destination="b80-Q5-yWd" id="6pn-rh-4hF"/>
                     </connections>
@@ -110,15 +155,69 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-3" y="-427"/>
+            <point key="canvasLocation" x="-6" y="-523"/>
+        </scene>
+        <!--Modal View Controller-->
+        <scene sceneID="OKN-VU-CZz">
+            <objects>
+                <viewController storyboardIdentifier="SFModalViewController" id="0Fn-Dk-5TO" customClass="SFModalViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gI8-Ku-e17">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="8Ns-eZ-k9u">
+                                <rect key="frame" x="0.0" y="389" width="768" height="635"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Hi. What’s your Email?" minimumFontSize="10" clearButtonMode="whileEditing" id="Bga-iD-536">
+                                        <rect key="frame" x="46" y="93" width="518" height="90"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="go"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hAT-Wt-5fU">
+                                        <rect key="frame" x="572" y="77" width="176" height="121"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="go.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sendEmail:" destination="0Fn-Dk-5TO" eventType="touchUpInside" id="rcQ-QZ-K8c"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" id="5fz-ly-s47">
+                                        <rect key="frame" x="46" y="191" width="518" height="2"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <size key="freeformSize" width="768" height="500"/>
+                    <connections>
+                        <outlet property="email" destination="Bga-iD-536" id="8iG-sJ-UGR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iEd-MS-H8A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="863" y="-523"/>
         </scene>
     </scenes>
     <resources>
+        <image name="filter.png" width="290" height="68"/>
         <image name="go.png" width="121" height="121"/>
-        <image name="home-sidebar.png" width="257" height="768"/>
+        <image name="post-send-copy.png" width="159" height="47"/>
+        <image name="post.png" width="63" height="19"/>
+        <image name="retake.png" width="91" height="18"/>
+        <image name="scottfree-salon.png" width="480" height="192"/>
         <image name="selfie-station.png" width="442" height="345"/>
-        <image name="snap-a-pic.png" width="69" height="503"/>
+        <image name="snap-a-pic.png" width="503" height="69"/>
     </resources>
+    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

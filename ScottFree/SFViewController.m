@@ -10,20 +10,19 @@
 #import "CIFilter+LUT.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
-
 #import "SFViewController.h"
-
 #import "UIImage+Resize.h"
-
+#import "ZFModalTransitionAnimator.h"
+#import "SFModalViewController.h"
 static void * CapturingStillImageContext = &CapturingStillImageContext;
-static void * RecordingContext = &RecordingContext;
 static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDeviceAuthorizedContext;
-
 
 @interface SFViewController () <AVCaptureFileOutputRecordingDelegate, UIScrollViewDelegate>
 
 @property (strong, nonatomic) NSArray *filters;
 @property (strong, nonatomic) AVAudioPlayer *player;
+@property (strong, nonatomic) NSData *originalPhotoImageData;
+@property (strong, nonatomic) UIImage *originalPhoto;
 
 @property int countdown;
 @property NSTimer *timer;
@@ -32,8 +31,9 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 @property (nonatomic) dispatch_queue_t sessionQueue; // Communicate with the session and other session objects on this queue.
 @property (nonatomic) AVCaptureSession *session;
 @property (nonatomic) AVCaptureDeviceInput *videoDeviceInput;
-@property (nonatomic) AVCaptureMovieFileOutput *movieFileOutput;
 @property (nonatomic) AVCaptureStillImageOutput *stillImageOutput;
+
+@property (nonatomic, strong) ZFModalTransitionAnimator *animator;
 
 // Utilities.
 @property (nonatomic) UIBackgroundTaskIdentifier backgroundRecordingID;
@@ -41,6 +41,8 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 @property (nonatomic, readonly, getter = isSessionRunningAndDeviceAuthorized) BOOL sessionRunningAndDeviceAuthorized;
 @property (nonatomic) BOOL lockInterfaceRotation;
 @property (nonatomic) id runtimeErrorHandlingObserver;
+
+@property (nonatomic, strong) UIDocumentInteractionController *docController;
 
 @end
 
@@ -67,63 +69,19 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     //_filters = @[@"Anime", @"Brannan", @"Blue-Brown", @"Blue-Orange",  @"Cobalt-Crimson", @"Crimson-Clover", @"Decrease", @"Earlybird", @"Gold-Blue", @"Gold-Crimson", @"Gotham", @"Hefe",@"Increase",@"Inkwell",@"Lomo-fi",@"Lord-Kelvin",@"Nashville",@"Red-Blue-Yellow",@"Smokey",@"Sutro",@"Teal-Magenta-Gold",@"Toaster",@"Walden",@"X-Pro-II",@"Grimes",@"Lucille",@"Romero",@"None"];
         
 
-    _filters = @[@"None", @"Brannan", @"Decrease", @"Earlybird", @"Hefe",@"Increase",@"Inkwell",@"Gotham",@"Lomo-fi",@"Nashville",@"X-Pro-II"];
-    
-
-   
-    for (int i = 0; i < [_filters count]; i++){
-        
-        UIImage *photo = [UIImage imageNamed:@"girl.jpg"];
-        
-        photo = [photo resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(256,256) interpolationQuality:kCGInterpolationNone];
-        
-        CIFilter *lutFilter = [CIFilter filterWithLUT:_filters[i] dimension:64];
-        CIImage *ciImage = [[CIImage alloc] initWithImage:photo];
-        [lutFilter setValue:ciImage forKey:@"inputImage"];
-        CIImage *outputImage = [lutFilter outputImage];
-        CIContext *context = [CIContext contextWithOptions:[NSDictionary dictionaryWithObject:(__bridge id)(CGColorSpaceCreateDeviceRGB()) forKey:kCIContextWorkingColorSpace]];
-        
-        UIImage *img = [UIImage imageWithCGImage:[context createCGImage:outputImage fromRect:outputImage.extent]];
-        
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setContentMode:UIViewContentModeScaleAspectFill];
-        [btn setFrame: CGRectMake(0, i * 256, 256, 256)];
-        [btn setBackgroundColor: [UIColor lightGrayColor]];
-        [[btn imageView] setContentMode:UIViewContentModeScaleAspectFill];
-        [btn setImage:img forState:UIControlStateNormal];
-        
-        [self.filterView addSubview:btn];
-        
-    }
-    
-    [self.filterView setContentSize:CGSizeMake(256,[_filters count] * 256)];
-    
-
-
-    
+    _filters = @[@"None", @"Nashville", @"Gotham", @"Inkwell", @"Grimes", @"Lucille", @"Earlybird", @"Lord-Kelvin", @"X-Pro-II", @"Brannan", @"Hefe"];
 
     
     
+    [self.filterView setContentSize:CGSizeMake(193,[_filters count] * 187)];
     
-    
-    
-    
-    
-    
-    
-    // Create the AVCaptureSession
+
+
     AVCaptureSession *session = [[AVCaptureSession alloc] init];
     [self setSession:session];
-    
-    // Setup the preview view
     [[self previewView] setSession:session];
-    
-    // Check for device authorization
     [self checkDeviceAuthorizationStatus];
     
-    // In general it is not safe to mutate an AVCaptureSession or any of its inputs, outputs, or connections from multiple threads at the same time.
-    // Why not do all of this on the main queue?
-    // -[AVCaptureSession startRunning] is a blocking call which can take a long time. We dispatch session setup to the sessionQueue so that the main queue isn't blocked (which keeps the UI responsive).
     
     dispatch_queue_t sessionQueue = dispatch_queue_create("session queue", DISPATCH_QUEUE_SERIAL);
     [self setSessionQueue:sessionQueue];
@@ -138,24 +96,19 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
         
         if (error){NSLog(@"%@", error);}
         
-        if ([session canAddInput:videoDeviceInput])
-        {
+        if ([session canAddInput:videoDeviceInput]){
             [session addInput:videoDeviceInput];
             [self setVideoDeviceInput:videoDeviceInput];
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                // Why are we dispatching this to the main queue?
-                // Because AVCaptureVideoPreviewLayer is the backing layer for AVCamPreviewView and UIView can only be manipulated on main thread.
-                // Note: As an exception to the above rule, it is not necessary to serialize video orientation changes on the AVCaptureVideoPreviewLayer’s connection with other session manipulation.
-                
+    
                 [[(AVCaptureVideoPreviewLayer *)[[self previewView] layer] connection] setVideoOrientation:(AVCaptureVideoOrientation)[self interfaceOrientation]];
-                
                 
                 [(AVCaptureVideoPreviewLayer *)[[self previewView] layer] setVideoGravity:AVLayerVideoGravityResizeAspectFill];
                 
-                [(AVCaptureVideoPreviewLayer *)[[self previewView] layer] setFrame:CGRectMake(0, 0, 768, 768)];
+                [(AVCaptureVideoPreviewLayer *)[[self previewView] layer] setFrame:CGRectMake(0, 256, 768, 768)];
                 
-                self.previewView.frame = CGRectMake(0, 0, 768, 768);
+                //_previewView.frame = CGRectMake(0, 256, 768, 768);
                 
                 //[[(AVCaptureVideoPreviewLayer *)[[self previewView] layer] connection] setAutomaticallyAdjustsVideoMirroring:NO];
                 //[[(AVCaptureVideoPreviewLayer *)[[self previewView] layer] connection] setVideoMirrored:NO];
@@ -169,24 +122,12 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
         
         if (error){NSLog(@"%@", error);}
         
-        if ([session canAddInput:audioDeviceInput])
-        {
+        if ([session canAddInput:audioDeviceInput]){
             [session addInput:audioDeviceInput];
         }
-        
-        AVCaptureMovieFileOutput *movieFileOutput = [[AVCaptureMovieFileOutput alloc] init];
-        if ([session canAddOutput:movieFileOutput])
-        {
-            [session addOutput:movieFileOutput];
-            AVCaptureConnection *connection = [movieFileOutput connectionWithMediaType:AVMediaTypeVideo];
-            if ([connection isVideoStabilizationSupported])
-                [connection setEnablesVideoStabilizationWhenAvailable:YES];
-            [self setMovieFileOutput:movieFileOutput];
-        }
-        
+    
         AVCaptureStillImageOutput *stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
-        if ([session canAddOutput:stillImageOutput])
-        {
+        if ([session canAddOutput:stillImageOutput]){
             [stillImageOutput setOutputSettings:@{AVVideoCodecKey : AVVideoCodecJPEG}];
             [session addOutput:stillImageOutput];
             [self setStillImageOutput:stillImageOutput];
@@ -222,7 +163,6 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     dispatch_async([self sessionQueue], ^{
         [self addObserver:self forKeyPath:@"sessionRunningAndDeviceAuthorized" options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew) context:SessionRunningAndDeviceAuthorizedContext];
         [self addObserver:self forKeyPath:@"stillImageOutput.capturingStillImage" options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew) context:CapturingStillImageContext];
-        [self addObserver:self forKeyPath:@"movieFileOutput.recording" options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew) context:RecordingContext];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(subjectAreaDidChange:) name:AVCaptureDeviceSubjectAreaDidChangeNotification object:[[self videoDeviceInput] device]];
         
         __weak SFViewController *weakSelf = self;
@@ -231,7 +171,6 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
             dispatch_async([strongSelf sessionQueue], ^{
                 // Manually restarting the session since it must have been stopped due to an error.
                 [[strongSelf session] startRunning];
-      
             });
         }]];
         [[self session] startRunning];
@@ -248,7 +187,6 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
         
         [self removeObserver:self forKeyPath:@"sessionRunningAndDeviceAuthorized" context:SessionRunningAndDeviceAuthorizedContext];
         [self removeObserver:self forKeyPath:@"stillImageOutput.capturingStillImage" context:CapturingStillImageContext];
-        [self removeObserver:self forKeyPath:@"movieFileOutput.recording" context:RecordingContext];
     });
 }
 
@@ -283,11 +221,6 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
         {
             [self runStillImageCaptureAnimation];
         }
-    }
-    else if (context == RecordingContext)
-    {
-   
-
     }
     else if (context == SessionRunningAndDeviceAuthorizedContext)
     {
@@ -453,19 +386,18 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 }
 
 
-
-
-
-
 -(void)revealFilters {
- 
-
+    [_sidebar setAlpha:1];
+    [_sidebar setHidden:false];
+    [_snapSidebar setAlpha:0];
+    [_snapSidebar setHidden:true];
 }
 -(void)hideFilters {
-    
-    
+    [_sidebar setAlpha:0];
+    [_sidebar setHidden:true];
+    [_snapSidebar setAlpha:1];
+    [_snapSidebar setHidden:false];
 }
-
 
 
 -(void)onTick:(NSTimer *)timer {
@@ -477,6 +409,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
         NSLog(@"boom!");
         [self revealFilters];
         [_stillButton setImage:[UIImage imageNamed:@"go.png"] forState:UIControlStateNormal];
+        [_stillButton setUserInteractionEnabled:true];
     } else {
         [_stillButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d.png",_countdown--]] forState:UIControlStateNormal];
         [self beep];
@@ -492,14 +425,10 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     [inv setTarget: self];
     [inv setSelector:@selector(onTick:)];
     
-    _timer = [NSTimer timerWithTimeInterval: 1.0
-                                     invocation:inv
-                                        repeats:YES];
+    _timer = [NSTimer timerWithTimeInterval: 1.0 invocation:inv repeats:YES];
 
-    
     NSRunLoop *runner = [NSRunLoop currentRunLoop];
     [runner addTimer: _timer forMode: NSDefaultRunLoopMode];
-    
     
 }
 
@@ -524,18 +453,67 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
         // Flash set to Auto for Still Capture
         [SFViewController setFlashMode:AVCaptureFlashModeAuto forDevice:[[self videoDeviceInput] device]];
         
+        __weak SFViewController *weakSelf = self;
+        
         // Capture a still image.
         [[self stillImageOutput] captureStillImageAsynchronouslyFromConnection:[[self stillImageOutput] connectionWithMediaType:AVMediaTypeVideo] completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
             
-            if (imageDataSampleBuffer)
-            {
-                NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
-                UIImage *image = [[UIImage alloc] initWithData:imageData];
+            SFViewController *strongSelf = weakSelf;
+            
+            if (imageDataSampleBuffer){
+            
+                strongSelf.originalPhotoImageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
+                
+                UIImage *image = [[UIImage alloc] initWithData:strongSelf.originalPhotoImageData];
+      
+                image = [image resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(612,612) interpolationQuality:kCGInterpolationHigh];
+                image = [image croppedImage:CGRectMake(0,256,612,612)];
+                
+                [weakSelf.yourPhoto setImage:image];
+                
+                
+                
+
+                image = [image resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(181,181) interpolationQuality:kCGInterpolationNone];
+                
+                //image = [image croppedImage:CGRectMake(0,0,181,181)];
+                
+                for (int i = 0; i < [_filters count]; i++){
+                    
+                    CIFilter *lutFilter = [CIFilter filterWithLUT:_filters[i] dimension:64];
+                    CIImage *ciImage = [[CIImage alloc] initWithImage:image];
+                    [lutFilter setValue:ciImage forKey:@"inputImage"];
+                    CIImage *outputImage = [lutFilter outputImage];
+                    CIContext *context = [CIContext contextWithOptions:[NSDictionary dictionaryWithObject:(__bridge id)(CGColorSpaceCreateDeviceRGB()) forKey:kCIContextWorkingColorSpace]];
+                    
+                    UIImage *img = [UIImage imageWithCGImage:[context createCGImage:outputImage fromRect:outputImage.extent]];
+                    
+                    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+                    [btn setContentMode:UIViewContentModeScaleAspectFill];
+                    [btn setFrame: CGRectMake(6, i * 187 + 6, 181, 181)];
+                    [btn setBackgroundColor: [UIColor whiteColor]];
+                    [[btn imageView] setContentMode:UIViewContentModeScaleAspectFill];
+                    [btn setImage:img forState:UIControlStateNormal];
+                    
+                    [btn setShowsTouchWhenHighlighted: true];
+                    
+                    btn.tag = i;
+                    
+                    [btn addTarget:weakSelf action:@selector(applyFilter:) forControlEvents:UIControlEventTouchUpInside];
+                    
+                    [weakSelf.filterView addSubview:btn];
+                    
+                    img = nil;
+                    ciImage = nil;
+                    outputImage = nil;
+                    
+                }
+                
                 [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:^(NSURL *assetURL, NSError *error){
-                
-                    [_yourPhoto setAlpha:1];
-                    [_yourPhoto setImage:image];
-                
+
+                    //saved!
+                    
+                    
             }];
             }
         }];
@@ -544,9 +522,34 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 }
 
 
+- (void)applyFilter:(UIButton *)sender {
+
+    //photo = [photo resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(193,193) interpolationQuality:kCGInterpolationNone];
+    
+    UIImage *original = [[UIImage alloc] initWithData:_originalPhotoImageData];
+
+    original = [original resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(612,612) interpolationQuality:kCGInterpolationHigh];
+    original = [original croppedImage:CGRectMake(0,256,612,612)];
+    
+    CIFilter *lutFilter = [CIFilter filterWithLUT:_filters[sender.tag] dimension:64];
+    CIImage *ciImage = [[CIImage alloc] initWithImage:original];
+    [lutFilter setValue:ciImage forKey:@"inputImage"];
+    CIImage *outputImage = [lutFilter outputImage];
+    CIContext *context = [CIContext contextWithOptions:[NSDictionary dictionaryWithObject:(__bridge id)(CGColorSpaceCreateDeviceRGB()) forKey:kCIContextWorkingColorSpace]];
+    
+    UIImage *img = [UIImage imageWithCGImage:[context createCGImage:outputImage fromRect:outputImage.extent]];
+    _yourPhoto.image = img;
+    
+    original = nil;
+    outputImage = nil;
+    img = nil;
+
+    
+}
+
 
 - (IBAction)takePhoto:(UIButton *)sender {
-    
+    [sender setUserInteractionEnabled:false];
     [self startCountdown: sender];
     
 }
@@ -555,31 +558,70 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 
 
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-}
-
-
-#pragma mark - RGMPagingScrollViewDatasource
-
-- (NSInteger)pagingScrollViewNumberOfPages:(UIScrollView *)pagingScrollView
-{
-    return [_filters count] / 3;
-}
 
 
 
-#pragma mark - RGMPagingScrollViewDelegate
 
-- (void)pagingScrollView:(UIScrollView *)pagingScrollView scrolledToPage:(NSInteger)id
-{
+
+
+
+
+
+
+
+
+
+
+- (void)killZombies {
     
 }
-
 
 - (IBAction)getStarted:(UIButton *)sender {
-    
     [_intro setAlpha:0];
+    [_intro setHidden:true];
+}
+
+- (IBAction)retakePhoto:(UIButton *)sender {
+    [self killZombies];
+    [self hideFilters];
+}
+
+- (IBAction)postAndSendPhoto:(UIButton *)sender {
+    
+    UIImage *instaImage = _yourPhoto.image;
+    NSString *imagePath = [NSString stringWithFormat:@"%@/image.igo",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]];
+    [[NSFileManager defaultManager] removeItemAtPath:imagePath error:nil];
+    [UIImageJPEGRepresentation(instaImage,90) writeToFile:imagePath atomically:YES];
+    
+    
+    SFModalViewController *modalVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SFModalViewController"];
+    modalVC.modalPresentationStyle = UIModalPresentationCustom;
+    
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:modalVC];
+    self.animator.dragable = YES;
+    self.animator.bounces = YES;
+    self.animator.behindViewAlpha = 0.5f;
+    self.animator.behindViewScale = 0.8f;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    
+    modalVC.transitioningDelegate = self.animator;
+    [self presentViewController:modalVC animated:YES completion:^(void){
+        [modalVC.email becomeFirstResponder];
+        //[self PostPhoto:sender];
+    }];
+    
+}
+
+- (IBAction)PostPhoto:(UIButton *)sender {
+
+    UIImage *instaImage = _yourPhoto.image;
+    NSString *imagePath = [NSString stringWithFormat:@"%@/image.igo",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]];
+    [[NSFileManager defaultManager] removeItemAtPath:imagePath error:nil];
+    [UIImageJPEGRepresentation(instaImage,90) writeToFile:imagePath atomically:YES];
+    NSLog(@"image size: %@", NSStringFromCGSize(instaImage.size));
+    _docController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:imagePath]];
+    _docController.UTI = @"com.instagram.exclusivegram";
+    [_docController presentOpenInMenuFromRect:CGRectMake(126, 905, 5, 5) inView:self.view animated:YES];
     
 }
 @end

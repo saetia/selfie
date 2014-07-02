@@ -52,9 +52,6 @@
 		5DF73A0619613E1B0049007B /* AVCamAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF73A0119613E1B0049007B /* AVCamAppDelegate.m */; };
 		5DF73A0719613E1B0049007B /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF73A0319613E1B0049007B /* AVCamPreviewView.m */; };
 		5DF73A0819613E1B0049007B /* AVCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF73A0519613E1B0049007B /* AVCamViewController.m */; };
-		5DF73A0D19616C940049007B /* RGMPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF73A0A19616C940049007B /* RGMPageControl.m */; };
-		5DF73A0E19616C940049007B /* RGMPagingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF73A0C19616C940049007B /* RGMPagingScrollView.m */; };
-		5DF73A1119616EB70049007B /* RGMPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF73A1019616EB70049007B /* RGMPageView.m */; };
 		5DF73A1619616FA90049007B /* indicator-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DF73A1219616FA90049007B /* indicator-active.png */; };
 		5DF73A1719616FA90049007B /* indicator-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DF73A1319616FA90049007B /* indicator-active@2x.png */; };
 		5DF73A1819616FA90049007B /* indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DF73A1419616FA90049007B /* indicator.png */; };
@@ -99,6 +96,10 @@
 		6C5D27BA19620C8F00118202 /* retake@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C5D27B019620C8F00118202 /* retake@2x.png */; };
 		6C5D27BB19620C8F00118202 /* snap-a-pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C5D27B119620C8F00118202 /* snap-a-pic.png */; };
 		6C5D27BC19620C8F00118202 /* snap-a-pic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C5D27B219620C8F00118202 /* snap-a-pic@2x.png */; };
+		6CDB3C4119631DD400AE73DF /* scottfree-salon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CDB3C3F19631DD400AE73DF /* scottfree-salon.png */; };
+		6CDB3C4219631DD400AE73DF /* scottfree-salon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CDB3C4019631DD400AE73DF /* scottfree-salon@2x.png */; };
+		6CDB3C481963685B00AE73DF /* ZFModalTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CDB3C471963685B00AE73DF /* ZFModalTransitionAnimator.m */; };
+		6CDB3C4B19636A9F00AE73DF /* SFModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CDB3C4A19636A9F00AE73DF /* SFModalViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,12 +162,6 @@
 		5DF73A0319613E1B0049007B /* AVCamPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamPreviewView.m; sourceTree = "<group>"; };
 		5DF73A0419613E1B0049007B /* AVCamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamViewController.h; sourceTree = "<group>"; };
 		5DF73A0519613E1B0049007B /* AVCamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamViewController.m; sourceTree = "<group>"; };
-		5DF73A0919616C940049007B /* RGMPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RGMPageControl.h; sourceTree = "<group>"; };
-		5DF73A0A19616C940049007B /* RGMPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RGMPageControl.m; sourceTree = "<group>"; };
-		5DF73A0B19616C940049007B /* RGMPagingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RGMPagingScrollView.h; sourceTree = "<group>"; };
-		5DF73A0C19616C940049007B /* RGMPagingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RGMPagingScrollView.m; sourceTree = "<group>"; };
-		5DF73A0F19616EB60049007B /* RGMPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RGMPageView.h; sourceTree = "<group>"; };
-		5DF73A1019616EB70049007B /* RGMPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RGMPageView.m; sourceTree = "<group>"; };
 		5DF73A1219616FA90049007B /* indicator-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "indicator-active.png"; sourceTree = "<group>"; };
 		5DF73A1319616FA90049007B /* indicator-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "indicator-active@2x.png"; sourceTree = "<group>"; };
 		5DF73A1419616FA90049007B /* indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indicator.png; sourceTree = "<group>"; };
@@ -220,6 +215,12 @@
 		6C5D27B019620C8F00118202 /* retake@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "retake@2x.png"; sourceTree = "<group>"; };
 		6C5D27B119620C8F00118202 /* snap-a-pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snap-a-pic.png"; sourceTree = "<group>"; };
 		6C5D27B219620C8F00118202 /* snap-a-pic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snap-a-pic@2x.png"; sourceTree = "<group>"; };
+		6CDB3C3F19631DD400AE73DF /* scottfree-salon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scottfree-salon.png"; sourceTree = "<group>"; };
+		6CDB3C4019631DD400AE73DF /* scottfree-salon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scottfree-salon@2x.png"; sourceTree = "<group>"; };
+		6CDB3C461963685B00AE73DF /* ZFModalTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFModalTransitionAnimator.h; sourceTree = "<group>"; };
+		6CDB3C471963685B00AE73DF /* ZFModalTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFModalTransitionAnimator.m; sourceTree = "<group>"; };
+		6CDB3C4919636A9F00AE73DF /* SFModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFModalViewController.h; sourceTree = "<group>"; };
+		6CDB3C4A19636A9F00AE73DF /* SFModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFModalViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,16 +337,12 @@
 				5DF73A1319616FA90049007B /* indicator-active@2x.png */,
 				5DF73A1419616FA90049007B /* indicator.png */,
 				5DF73A1519616FA90049007B /* indicator@2x.png */,
-				5DF73A0919616C940049007B /* RGMPageControl.h */,
-				5DF73A0A19616C940049007B /* RGMPageControl.m */,
-				5DF73A0B19616C940049007B /* RGMPagingScrollView.h */,
-				5DF73A0C19616C940049007B /* RGMPagingScrollView.m */,
-				5DF73A0F19616EB60049007B /* RGMPageView.h */,
-				5DF73A1019616EB70049007B /* RGMPageView.m */,
 				5DF739F319613D500049007B /* AVCam */,
 				5D60209B196130FB00276440 /* LUT */,
 				5D602098196130ED00276440 /* CIFilter+LUT.h */,
 				5D602099196130ED00276440 /* CIFilter+LUT.m */,
+				6CDB3C461963685B00AE73DF /* ZFModalTransitionAnimator.h */,
+				6CDB3C471963685B00AE73DF /* ZFModalTransitionAnimator.m */,
 				5DF73A1A19618FCD0049007B /* UIImage+Resize.m */,
 				5DF73A1B19618FCD0049007B /* UIImage+Resize.h */,
 				5DF73A1D196191630049007B /* UIImage+Alpha.h */,
@@ -355,6 +352,8 @@
 				5DFA298F19609BC5000954B0 /* SFAppDelegate.h */,
 				5DFA299019609BC5000954B0 /* SFAppDelegate.m */,
 				5DFA299219609BC5000954B0 /* Main.storyboard */,
+				6CDB3C4919636A9F00AE73DF /* SFModalViewController.h */,
+				6CDB3C4A19636A9F00AE73DF /* SFModalViewController.m */,
 				6C5D278D1961FDE100118202 /* SFFilterView.h */,
 				6C5D278E1961FDE100118202 /* SFFilterView.m */,
 				5DFA299519609BC5000954B0 /* SFViewController.h */,
@@ -408,6 +407,8 @@
 		6C5D2790196206E300118202 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6CDB3C3F19631DD400AE73DF /* scottfree-salon.png */,
+				6CDB3C4019631DD400AE73DF /* scottfree-salon@2x.png */,
 				6C5D27A919620C8F00118202 /* filter.png */,
 				6C5D27AA19620C8F00118202 /* filter@2x.png */,
 				6C5D27AB19620C8F00118202 /* post-send-copy.png */,
@@ -528,6 +529,7 @@
 				5DE6BAD31960ADEC00F69977 /* countdown-4up-3.tiff in Resources */,
 				5D6020C91961313400276440 /* Lucille.png in Resources */,
 				6C5D27B519620C8F00118202 /* post-send-copy.png in Resources */,
+				6CDB3C4119631DD400AE73DF /* scottfree-salon.png in Resources */,
 				6C5D27A7196206EC00118202 /* selfie-station.png in Resources */,
 				5D6020D21961313400276440 /* Walden.png in Resources */,
 				6C5D27A4196206EC00118202 /* go@2x.png in Resources */,
@@ -559,6 +561,7 @@
 				5DE6BAD41960ADEC00F69977 /* countdown-cam_dim.tiff in Resources */,
 				5D6020C31961313400276440 /* Grimes.png in Resources */,
 				6C5D27A8196206EC00118202 /* selfie-station@2x.png in Resources */,
+				6CDB3C4219631DD400AE73DF /* scottfree-salon@2x.png in Resources */,
 				6C5D279F196206EC00118202 /* 2.png in Resources */,
 				5DFA298B19609BC5000954B0 /* InfoPlist.strings in Resources */,
 				5DE6BADB1960B13700F69977 /* IKBeep.aiff in Resources */,
@@ -600,20 +603,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DF73A1119616EB70049007B /* RGMPageView.m in Sources */,
 				5DFA298D19609BC5000954B0 /* main.m in Sources */,
 				5DFA299719609BC5000954B0 /* SFViewController.m in Sources */,
-				5DF73A0E19616C940049007B /* RGMPagingScrollView.m in Sources */,
 				5DF73A0719613E1B0049007B /* AVCamPreviewView.m in Sources */,
 				6C5D278F1961FDE100118202 /* SFFilterView.m in Sources */,
 				5DFA299119609BC5000954B0 /* SFAppDelegate.m in Sources */,
+				6CDB3C481963685B00AE73DF /* ZFModalTransitionAnimator.m in Sources */,
 				5D60209A196130ED00276440 /* CIFilter+LUT.m in Sources */,
 				5DF73A0819613E1B0049007B /* AVCamViewController.m in Sources */,
 				5DF73A22196191630049007B /* UIImage+RoundedCorner.m in Sources */,
 				5DF73A21196191630049007B /* UIImage+Alpha.m in Sources */,
 				5DF73A1C19618FCD0049007B /* UIImage+Resize.m in Sources */,
 				5DF73A0619613E1B0049007B /* AVCamAppDelegate.m in Sources */,
-				5DF73A0D19616C940049007B /* RGMPageControl.m in Sources */,
+				6CDB3C4B19636A9F00AE73DF /* SFModalViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
