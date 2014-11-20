@@ -499,7 +499,7 @@
 				ORGANIZATIONNAME = "Company B";
 				TargetAttributes = {
 					5DFA297C19609BC5000954B0 = {
-						DevelopmentTeam = 5P57FQZ4FS;
+						DevelopmentTeam = QAXJ8YSX82;
 					};
 					5DFA299D19609BC5000954B0 = {
 						TestTargetID = 5DFA297C19609BC5000954B0;

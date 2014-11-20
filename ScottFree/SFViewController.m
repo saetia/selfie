@@ -66,18 +66,14 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
         
         NSString *email = notification.userInfo[@"email"];
 
-        
-        
-        
-        
-        
+    
         
         /*
          turning the image into a NSData object
          getting the image back out of the UIImageView
          setting the quality to 90
          */
-        NSData *imageData = UIImageJPEGRepresentation(_yourPhoto.image, 90);
+        NSData *imageData = UIImageJPEGRepresentation(_yourPhoto.image, 100);
         // setting up the URL to post to
         NSString *urlString = [NSString stringWithFormat:@"http://companyb.companybonline.com/selfie/mail.php?email=%@",email];
         
@@ -622,10 +618,17 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
                     CIImage *outputImage = [lutFilter outputImage];
                     CIContext *context = [CIContext contextWithOptions:[NSDictionary dictionaryWithObject:(__bridge id)(CGColorSpaceCreateDeviceRGB()) forKey:kCIContextWorkingColorSpace]];
                     
-                    UIImage *img = [UIImage imageWithCGImage:[context createCGImage:outputImage fromRect:outputImage.extent]];
+                    CGImageRef ref = [context createCGImage:outputImage fromRect:outputImage.extent];
+                    
+                    UIImage *img = [UIImage imageWithCGImage:ref];
+                    
+                    CGImageRelease(ref);
+                    
+                    _yourPhoto.image = img;
                     
                     [(UIButton *)[weakSelf.filterView viewWithTag:1000+i] setImage:img forState:UIControlStateNormal];
                     
+                    ref = NULL;
                     img = nil;
                     ciImage = nil;
                     outputImage = nil;
@@ -660,14 +663,20 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
     CIImage *outputImage = [lutFilter outputImage];
     CIContext *context = [CIContext contextWithOptions:[NSDictionary dictionaryWithObject:(__bridge id)(CGColorSpaceCreateDeviceRGB()) forKey:kCIContextWorkingColorSpace]];
     
-    UIImage *img = [UIImage imageWithCGImage:[context createCGImage:outputImage fromRect:outputImage.extent]];
+    
+    CGImageRef ref = [context createCGImage:outputImage fromRect:outputImage.extent];
+    
+    UIImage *img = [UIImage imageWithCGImage:ref];
+    
+    CGImageRelease(ref);
     
     _yourPhoto.image = img;
-    
-    original = nil;
-    outputImage = nil;
-    img = nil;
 
+    ref = NULL;
+    img = nil;
+    ciImage = nil;
+    outputImage = nil;
+    
     
 }
 

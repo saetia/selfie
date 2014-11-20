@@ -10,24 +10,36 @@
 	<string>ScottFree</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>2DA1D34CAB8646B3FFD1BDFA32F6325AC2FC4C14</key>
+		<string>github.com:saetia/selfie.git</string>
 		<key>627DF4EC-8DF1-4EA6-9D68-0A54BDB0E470</key>
 		<string>ssh://github.com/saetia/selfie.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>ScottFree.xcodeproj/project.xcworkspace</string>
+	<string>ScottFree.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>627DF4EC-8DF1-4EA6-9D68-0A54BDB0E470</key>
+		<key>2DA1D34CAB8646B3FFD1BDFA32F6325AC2FC4C14</key>
 		<string>../..</string>
+		<key>627DF4EC-8DF1-4EA6-9D68-0A54BDB0E470</key>
+		<string>../../../selfie</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/saetia/selfie.git</string>
+	<string>github.com:saetia/selfie.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>627DF4EC-8DF1-4EA6-9D68-0A54BDB0E470</string>
+	<string>2DA1D34CAB8646B3FFD1BDFA32F6325AC2FC4C14</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2DA1D34CAB8646B3FFD1BDFA32F6325AC2FC4C14</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ScottFree</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
